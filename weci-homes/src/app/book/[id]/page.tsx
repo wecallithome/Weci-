@@ -2,9 +2,9 @@ import { Metadata } from 'next'
 import { BookingFlowClient } from '@/components/booking/booking-flow-client'
 
 interface BookingPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export const metadata: Metadata = {
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description: 'Complete your booking for this luxury property.',
 }
 
-export default function BookingPage({ params }: BookingPageProps) {
-  return <BookingFlowClient propertyId={params.id} />
+export default async function BookingPage({ params }: BookingPageProps) {
+  const resolvedParams = await params
+  return <BookingFlowClient propertyId={resolvedParams.id} />
 }

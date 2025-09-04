@@ -27,12 +27,16 @@ export function PropertiesPageClient() {
     let filtered = [...properties]
     
     // Apply filters
-    if (filters.location) {
-      filtered = filtered.filter(property => 
-        property.location.city.toLowerCase().includes(filters.location!.toLowerCase()) ||
-        property.location.state?.toLowerCase().includes(filters.location!.toLowerCase()) ||
-        property.location.country.toLowerCase().includes(filters.location!.toLowerCase())
-      )
+    if (filters.location && filters.location.trim()) {
+      filtered = filtered.filter(property => {
+        if (!property.location) return false
+        const searchTerm = filters.location!.toLowerCase()
+        return (
+          property.location.city?.toLowerCase().includes(searchTerm) ||
+          property.location.state?.toLowerCase().includes(searchTerm) ||
+          property.location.country?.toLowerCase().includes(searchTerm)
+        )
+      })
     }
     
     if (filters.priceRange) {
@@ -48,9 +52,9 @@ export function PropertiesPageClient() {
       )
     }
     
-    if (filters.propertyType && filters.propertyType.length > 0) {
+    if (filters.propertyType && Array.isArray(filters.propertyType) && filters.propertyType.length > 0) {
       filtered = filtered.filter(property => 
-        filters.propertyType!.includes(property.property_type)
+        property.property_type && filters.propertyType!.includes(property.property_type)
       )
     }
     

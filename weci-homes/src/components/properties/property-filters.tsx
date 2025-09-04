@@ -50,7 +50,7 @@ export function PropertyFilters({
   }
   
   const handlePropertyTypeToggle = (type: PropertyType) => {
-    const currentTypes = filters.propertyType || []
+    const currentTypes = Array.isArray(filters.propertyType) ? filters.propertyType : []
     const newTypes = currentTypes.includes(type)
       ? currentTypes.filter(t => t !== type)
       : [...currentTypes, type]
@@ -59,7 +59,7 @@ export function PropertyFilters({
   }
   
   const handleAmenityToggle = (amenityId: string) => {
-    const currentAmenities = filters.amenities || []
+    const currentAmenities = Array.isArray(filters.amenities) ? filters.amenities : []
     const newAmenities = currentAmenities.includes(amenityId)
       ? currentAmenities.filter(a => a !== amenityId)
       : [...currentAmenities, amenityId]
@@ -160,7 +160,7 @@ export function PropertyFilters({
               key={type.value}
               onClick={() => handlePropertyTypeToggle(type.value)}
               className={`p-3 text-sm border rounded-lg transition-all ${
-                filters.propertyType?.includes(type.value)
+                Array.isArray(filters.propertyType) && filters.propertyType.includes(type.value)
                   ? 'border-navy-500 bg-navy-50 text-navy-700'
                   : 'border-gray-300 hover:border-gray-400 text-gray-700'
               }`}
@@ -178,7 +178,7 @@ export function PropertyFilters({
           Bedrooms
         </h4>
         <div className="grid grid-cols-4 gap-2">
-          {['Any', '1+', '2+', '3+', '4+'].map((option, index) => (
+          {['Any', '1+', '2+', '3+', '4+'].map((option, _index) => (
             <button
               key={option}
               onClick={() => {
@@ -204,7 +204,7 @@ export function PropertyFilters({
             >
               <input
                 type="checkbox"
-                checked={filters.amenities?.includes(amenity.id) || false}
+                checked={Array.isArray(filters.amenities) && filters.amenities.includes(amenity.id)}
                 onChange={() => handleAmenityToggle(amenity.id)}
                 className="w-4 h-4 text-navy-600 border-gray-300 rounded focus:ring-navy-500"
               />

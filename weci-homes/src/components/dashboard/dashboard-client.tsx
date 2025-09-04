@@ -99,11 +99,14 @@ export function DashboardClient() {
       filtered = filtered.filter(booking => booking.status === statusFilter)
     }
     
-    if (searchQuery) {
-      filtered = filtered.filter(booking => 
-        booking.property?.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        `${booking.property?.location.city}, ${booking.property?.location.state}`.toLowerCase().includes(searchQuery.toLowerCase())
-      )
+    if (searchQuery && searchQuery.trim()) {
+      filtered = filtered.filter(booking => {
+        if (!booking.property) return false
+        const query = searchQuery.toLowerCase()
+        const title = booking.property.title?.toLowerCase() || ''
+        const location = `${booking.property.location?.city || ''}, ${booking.property.location?.state || ''}`.toLowerCase()
+        return title.includes(query) || location.includes(query)
+      })
     }
     
     setFilteredBookings(filtered)

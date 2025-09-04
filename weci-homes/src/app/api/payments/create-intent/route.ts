@@ -2,12 +2,23 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { formatAmountForStripe } from '@/lib/stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+// Get Stripe secret key with fallback for build time
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY || 'sk_test_mock_secret_key'
+
+const stripe = new Stripe(stripeSecretKey, {
   apiVersion: '2025-08-27.basil',
 })
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if we're in build mode or if Stripe is not properly configured
+    if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY.includes('mock')) {
+      return NextResponse.json(
+        { error: 'Service temporarily unavailable' },
+        { status: 503 }
+      )
+    }
+
     const { amount, bookingData } = await request.json()
 
     // Validate the amount

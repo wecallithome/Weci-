@@ -11,11 +11,13 @@ interface BookingStepIndicatorProps {
 }
 
 export function BookingStepIndicator({ steps, currentStep, completedSteps }: BookingStepIndicatorProps) {
+  const safeCompletedSteps = Array.isArray(completedSteps) ? completedSteps : []
+  
   return (
     <div className="py-6">
       <div className="flex items-center justify-between max-w-2xl mx-auto">
         {steps.map((step, index) => {
-          const isCompleted = completedSteps.includes(step.key)
+          const isCompleted = safeCompletedSteps.includes(step.key)
           const isCurrent = currentStep === step.key
           const isLast = index === steps.length - 1
           
