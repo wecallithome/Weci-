@@ -6,11 +6,8 @@ import {
   Mail, 
   Phone, 
   MapPin, 
-  Clock, 
   Send,
   MessageCircle,
-  Globe,
-  Star,
   CheckCircle
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -21,14 +18,14 @@ const contactMethods = [
     icon: Phone,
     title: '24/7 Guest Support',
     description: 'Immediate assistance whenever you need it',
-    contact: '+1 (555) 123-HOMES',
+    contact: '+44 800 123 HOMES',
     available: 'Available 24/7'
   },
   {
     icon: Mail,
     title: 'Email Support',
-    description: 'Detailed inquiries and booking assistance',
-    contact: 'hello@wecallithomes.com',
+    description: 'Detailed enquiries and booking assistance',
+    contact: 'hello@wecallithomes.co.uk',
     available: 'Response within 2 hours'
   },
   {
@@ -36,28 +33,28 @@ const contactMethods = [
     title: 'Live Chat',
     description: 'Instant messaging with our concierge team',
     contact: 'Available on website',
-    available: 'Mon-Sun 6AM-11PM PST'
+    available: 'Mon-Sun 6AM-11PM GMT'
   }
 ]
 
 const offices = [
   {
-    city: 'San Francisco',
-    address: '123 Luxury Lane, Suite 500',
-    phone: '+1 (555) 123-4567',
-    image: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&q=80'
-  },
-  {
-    city: 'New York',
-    address: '456 Park Avenue, 12th Floor',
-    phone: '+1 (555) 987-6543',
-    image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&q=80'
-  },
-  {
     city: 'London',
     address: '789 Mayfair Street, Westminster',
     phone: '+44 20 7123 4567',
     image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&q=80'
+  },
+  {
+    city: 'Manchester',
+    address: '123 Deansgate, City Centre',
+    phone: '+44 161 123 4567',
+    image: 'https://images.unsplash.com/photo-1471919743851-c4df8b6ee b95?w=400&q=80'
+  },
+  {
+    city: 'Birmingham',
+    address: '456 Colmore Row, Business Quarter',
+    phone: '+44 121 456 7890',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=400&q=80'
   }
 ]
 
@@ -132,7 +129,7 @@ export function ContactClient() {
               Get in Touch
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto">
-              Whether you're planning your next getaway or have questions about our properties, 
+              Whether you&apos;re planning your next getaway or have questions about our properties, 
               our dedicated team is here to help create your perfect stay.
             </p>
           </motion.div>
@@ -203,7 +200,7 @@ export function ContactClient() {
                 Send Us a Message
               </h2>
               <p className="text-gray-600 mb-8">
-                Fill out the form below and we'll get back to you as soon as possible.
+                Fill out the form below and we&apos;ll get back to you as soon as possible.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -427,7 +424,7 @@ export function ContactClient() {
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Can't find what you're looking for? Check out our comprehensive FAQ section 
+              Can&apos;t find what you&apos;re looking for? Check out our comprehensive FAQ section 
               or contact us directly for personalized assistance.
             </p>
             <Button size="lg" variant="outline">

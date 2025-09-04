@@ -204,7 +204,7 @@ export function ConfirmationStep({ property }: ConfirmationStepProps) {
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Confirmation Email</h3>
             <p className="text-gray-600 text-sm">
-              You&apos;ll receive a detailed confirmation email with check-in instructions
+              You&apos;ll receive a detailed confirmation email with arrival instructions
             </p>
           </div>
           

@@ -11,12 +11,12 @@ const mockProperties: Property[] = [
     description: 'A stunning luxury villa with panoramic ocean views, featuring modern amenities and elegant design.',
     location: {
       address: '123 Ocean Drive',
-      city: 'Malibu',
-      state: 'California',
-      country: 'USA',
-      zip_code: '90265',
-      latitude: 34.0259,
-      longitude: -118.7798
+      city: 'Brighton',
+      county: 'East Sussex',
+      country: 'United Kingdom',
+      postcode: 'BN1 2AB',
+      latitude: 50.8225,
+      longitude: -0.1372
     },
     images: [
       {
@@ -34,7 +34,15 @@ const mockProperties: Property[] = [
         order: 2
       }
     ],
-    amenities: ['WiFi', 'Pool', 'Kitchen', 'Parking', 'Air Conditioning', 'Beach Access', 'Balcony'],
+    amenities: [
+      { id: 'amenity-1', name: 'WiFi', icon: 'wifi', category: 'basic' },
+      { id: 'amenity-2', name: 'Pool', icon: 'pool', category: 'outdoor' },
+      { id: 'amenity-3', name: 'Kitchen', icon: 'kitchen', category: 'kitchen' },
+      { id: 'amenity-4', name: 'Parking', icon: 'parking', category: 'basic' },
+      { id: 'amenity-5', name: 'Air Conditioning', icon: 'ac', category: 'basic' },
+      { id: 'amenity-6', name: 'Beach Access', icon: 'beach', category: 'outdoor' },
+      { id: 'amenity-7', name: 'Balcony', icon: 'balcony', category: 'outdoor' }
+    ],
     nightly_price: 850,
     cleaning_fee: 150,
     service_fee: 85,
@@ -81,7 +89,15 @@ const mockProperties: Property[] = [
         order: 1
       }
     ],
-    amenities: ['WiFi', 'Kitchen', 'Air Conditioning', 'Heating', 'TV', 'Washing Machine', 'Gym'],
+    amenities: [
+      { id: 'amenity-8', name: 'WiFi', icon: 'wifi', category: 'basic' },
+      { id: 'amenity-9', name: 'Kitchen', icon: 'kitchen', category: 'kitchen' },
+      { id: 'amenity-10', name: 'Air Conditioning', icon: 'ac', category: 'basic' },
+      { id: 'amenity-11', name: 'Heating', icon: 'heating', category: 'basic' },
+      { id: 'amenity-12', name: 'TV', icon: 'tv', category: 'entertainment' },
+      { id: 'amenity-13', name: 'Washing Machine', icon: 'washer', category: 'basic' },
+      { id: 'amenity-14', name: 'Gym', icon: 'gym', category: 'entertainment' }
+    ],
     nightly_price: 320,
     cleaning_fee: 75,
     service_fee: 32,
@@ -128,7 +144,15 @@ const mockProperties: Property[] = [
         order: 1
       }
     ],
-    amenities: ['WiFi', 'Hot Tub', 'Fireplace', 'Kitchen', 'Heating', 'Parking', 'Garden'],
+    amenities: [
+      { id: 'amenity-15', name: 'WiFi', icon: 'wifi', category: 'basic' },
+      { id: 'amenity-16', name: 'Hot Tub', icon: 'hottub', category: 'outdoor' },
+      { id: 'amenity-17', name: 'Fireplace', icon: 'fireplace', category: 'basic' },
+      { id: 'amenity-18', name: 'Kitchen', icon: 'kitchen', category: 'kitchen' },
+      { id: 'amenity-19', name: 'Heating', icon: 'heating', category: 'basic' },
+      { id: 'amenity-20', name: 'Parking', icon: 'parking', category: 'basic' },
+      { id: 'amenity-21', name: 'Garden', icon: 'garden', category: 'outdoor' }
+    ],
     nightly_price: 275,
     cleaning_fee: 100,
     service_fee: 27.50,
@@ -175,7 +199,14 @@ const mockProperties: Property[] = [
         order: 1
       }
     ],
-    amenities: ['WiFi', 'Kitchen', 'Air Conditioning', 'TV', 'Washing Machine', 'Balcony'],
+    amenities: [
+      { id: 'amenity-22', name: 'WiFi', icon: 'wifi', category: 'basic' },
+      { id: 'amenity-23', name: 'Kitchen', icon: 'kitchen', category: 'kitchen' },
+      { id: 'amenity-24', name: 'Air Conditioning', icon: 'ac', category: 'basic' },
+      { id: 'amenity-25', name: 'TV', icon: 'tv', category: 'entertainment' },
+      { id: 'amenity-26', name: 'Washing Machine', icon: 'washer', category: 'basic' },
+      { id: 'amenity-27', name: 'Balcony', icon: 'balcony', category: 'outdoor' }
+    ],
     nightly_price: 450,
     cleaning_fee: 120,
     service_fee: 45,
@@ -222,7 +253,15 @@ const mockProperties: Property[] = [
         order: 1
       }
     ],
-    amenities: ['WiFi', 'Beach Access', 'Pool', 'Kitchen', 'Air Conditioning', 'Balcony', 'Barbecue'],
+    amenities: [
+      { id: 'amenity-28', name: 'WiFi', icon: 'wifi', category: 'basic' },
+      { id: 'amenity-29', name: 'Beach Access', icon: 'beach', category: 'outdoor' },
+      { id: 'amenity-30', name: 'Pool', icon: 'pool', category: 'outdoor' },
+      { id: 'amenity-31', name: 'Kitchen', icon: 'kitchen', category: 'kitchen' },
+      { id: 'amenity-32', name: 'Air Conditioning', icon: 'ac', category: 'basic' },
+      { id: 'amenity-33', name: 'Balcony', icon: 'balcony', category: 'outdoor' },
+      { id: 'amenity-34', name: 'Barbecue', icon: 'bbq', category: 'outdoor' }
+    ],
     nightly_price: 680,
     cleaning_fee: 180,
     service_fee: 68,
@@ -269,7 +308,15 @@ const mockProperties: Property[] = [
         order: 1
       }
     ],
-    amenities: ['WiFi', 'Kitchen', 'Heating', 'Fireplace', 'TV', 'Washing Machine', 'Garden'],
+    amenities: [
+      { id: 'amenity-35', name: 'WiFi', icon: 'wifi', category: 'basic' },
+      { id: 'amenity-36', name: 'Kitchen', icon: 'kitchen', category: 'kitchen' },
+      { id: 'amenity-37', name: 'Heating', icon: 'heating', category: 'basic' },
+      { id: 'amenity-38', name: 'Fireplace', icon: 'fireplace', category: 'basic' },
+      { id: 'amenity-39', name: 'TV', icon: 'tv', category: 'entertainment' },
+      { id: 'amenity-40', name: 'Washing Machine', icon: 'washer', category: 'basic' },
+      { id: 'amenity-41', name: 'Garden', icon: 'garden', category: 'outdoor' }
+    ],
     nightly_price: 380,
     cleaning_fee: 90,
     service_fee: 38,

@@ -8,13 +8,15 @@ import { Toast } from "@/components/ui/toast"
 const inter = Inter({ 
   subsets: ["latin"],
   display: 'swap',
-  variable: '--font-inter'
+  variable: '--font-inter',
+  fallback: ['system-ui', 'arial']
 })
 
 const playfair = Playfair_Display({ 
   subsets: ["latin"],
   display: 'swap',
-  variable: '--font-playfair'
+  variable: '--font-playfair',
+  fallback: ['Georgia', 'serif']
 })
 
 export const metadata: Metadata = {
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | We Call It Homes"
   },
   description: "Discover extraordinary properties and create unforgettable memories. We curate the finest homes for the most discerning travelers.",
-  keywords: ["luxury rentals", "vacation homes", "premium properties", "boutique stays", "luxury travel"],
+  keywords: ["luxury rentals", "holiday homes", "premium properties", "boutique stays", "luxury travel"],
   authors: [{ name: "We Call It Homes" }],
   creator: "We Call It Homes",
   openGraph: {

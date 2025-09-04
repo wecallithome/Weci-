@@ -121,7 +121,7 @@ export function GuestDetailsStep({ onNext }: GuestDetailsStepProps) {
               className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-navy-500 focus:border-transparent transition-colors ${
                 errors.phone ? 'border-red-500' : 'border-gray-300'
               }`}
-              placeholder="Enter your phone number"
+              placeholder="Enter your UK phone number (e.g., 01234 567890)"
             />
             {errors.phone && (
               <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>

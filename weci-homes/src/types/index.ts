@@ -34,9 +34,24 @@ export interface Property {
 export interface Location {
   address: string
   city: string
-  state: string
+  state?: string // Optional for backward compatibility
+  county?: string // UK county field
   country: string
-  zip_code: string
+  zip_code?: string // Optional for backward compatibility
+  postcode?: string // UK postcode field
+  region?: string // UK region (England, Scotland, Wales, Northern Ireland)
+  latitude?: number
+  longitude?: number
+}
+
+// UK-specific location interface
+export interface UKLocation {
+  address: string
+  city: string
+  county?: string
+  country: 'United Kingdom'
+  postcode: string
+  region: 'England' | 'Scotland' | 'Wales' | 'Northern Ireland'
   latitude?: number
   longitude?: number
 }
@@ -95,6 +110,7 @@ export interface PricingBreakdown {
   service_fee: number
   taxes: number
   total: number
+  currency?: string // Add currency field, defaults to GBP
 }
 
 export interface Payment {
@@ -184,8 +200,10 @@ export interface Address {
   line1: string
   line2?: string
   city: string
-  state: string
-  postal_code: string
+  state?: string // Optional for backward compatibility
+  county?: string // UK county field
+  postal_code?: string // Optional for backward compatibility
+  postcode?: string // UK postcode field
   country: string
 }
 

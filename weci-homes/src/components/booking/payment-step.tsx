@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { CreditCard, Lock, Shield, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -39,14 +39,7 @@ function PaymentStepContent({ property, onNext }: PaymentStepProps) {
   const [clientSecret, setClientSecret] = useState<string | null>(null)
   const [paymentError, setPaymentError] = useState<string | null>(null)
   
-  // Create payment intent on component mount
-  useEffect(() => {
-    if (bookingFlow.pricing && bookingFlow.userDetails) {
-      createPaymentIntent()
-    }
-  }, [bookingFlow.pricing, bookingFlow.userDetails])
-  
-  const createPaymentIntent = async () => {
+  const createPaymentIntent = useCallback(async () => {
     try {
       const response = await fetch('/api/payments/create-intent', {
         method: 'POST',
@@ -77,7 +70,14 @@ function PaymentStepContent({ property, onNext }: PaymentStepProps) {
       console.error('Error creating payment intent:', error)
       toast.error('Failed to initialize payment. Please try again.')
     }
-  }
+  }, [bookingFlow.pricing, bookingFlow.dateRange, bookingFlow.guestCount, bookingFlow.userDetails, property.id, setBookingPaymentIntentId])
+  
+  // Create payment intent on component mount
+  useEffect(() => {
+    if (bookingFlow.pricing && bookingFlow.userDetails) {
+      createPaymentIntent()
+    }
+  }, [bookingFlow.pricing, bookingFlow.userDetails, createPaymentIntent])
   
   const handlePayment = async () => {
     if (!stripe || !elements || !clientSecret) {
@@ -99,7 +99,7 @@ function PaymentStepContent({ property, onNext }: PaymentStepProps) {
         payment_method: {
           card: cardElement,
           billing_details: {
-            name: bookingFlow.userDetails!.firstName + ' ' + bookingFlow.userDetails!.lastName,
+            name: bookingFlow.userDetails!.name,
             email: bookingFlow.userDetails!.email,
           },
         },

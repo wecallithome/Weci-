@@ -3,7 +3,7 @@ import Stripe from 'stripe'
 import { formatAmountForStripe } from '@/lib/stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-06-20',
+  apiVersion: '2025-08-27.basil',
 })
 
 export async function POST(request: NextRequest) {
@@ -20,8 +20,8 @@ export async function POST(request: NextRequest) {
 
     // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: formatAmountForStripe(amount, 'usd'),
-      currency: 'usd',
+      amount: formatAmountForStripe(amount, 'gbp'),
+      currency: 'gbp',
       metadata: {
         propertyId: bookingData.propertyId,
         startDate: bookingData.startDate,

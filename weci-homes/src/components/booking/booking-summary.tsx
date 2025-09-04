@@ -119,7 +119,7 @@ export function BookingSummary({ property }: BookingSummaryProps) {
       {/* Notice */}
       <div className="mt-6 p-4 bg-gray-50 rounded-lg">
         <p className="text-sm text-gray-600 text-center">
-          Free cancellation before 48 hours of check-in
+          Free cancellation before 48 hours of arrival
         </p>
       </div>
     </motion.div>

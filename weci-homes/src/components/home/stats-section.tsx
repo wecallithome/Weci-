@@ -73,7 +73,7 @@ function useCountUp(end: number, duration: number = 2000, startAnimation: boolea
 
 export function StatsSection() {
   const ref = useRef<HTMLElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.3 })
+  const isInView = useInView(ref, { once: true })
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]

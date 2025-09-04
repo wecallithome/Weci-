@@ -266,7 +266,7 @@ export function BookingWidget({ property }: BookingWidgetProps) {
       <div className="bg-gray-50 rounded-lg p-4 space-y-2">
         <h4 className="font-medium text-gray-900">This is a rare find</h4>
         <p className="text-sm text-gray-600">
-          {property.host.name}'s place is usually booked.
+          {property.host.name}&apos;s place is usually booked.
         </p>
       </div>
     </motion.div>

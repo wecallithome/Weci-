@@ -11,7 +11,6 @@ import { SearchModal } from '@/components/search/search-modal'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { Toast } from '@/components/ui/toast'
 import { useAppStore } from '@/store'
-import { useState } from 'react'
 
 interface AppLayoutProps {
   children: ReactNode

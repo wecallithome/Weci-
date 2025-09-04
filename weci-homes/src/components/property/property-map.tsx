@@ -16,7 +16,7 @@ export function PropertyMap({ property }: PropertyMapProps) {
       transition={{ duration: 0.6, delay: 0.3 }}
       className="space-y-6"
     >
-      <h3 className="text-xl font-serif font-semibold text-gray-900">Where you'll be</h3>
+      <h3 className="text-xl font-serif font-semibold text-gray-900">Where you&apos;ll be</h3>
       
       {/* Location Info */}
       <div className="flex items-center space-x-2 text-gray-700 mb-4">
@@ -75,7 +75,7 @@ export function PropertyMap({ property }: PropertyMapProps) {
       <div className="prose prose-gray max-w-none">
         <p className="text-gray-700 leading-relaxed">
           Experience the best of {property.location.city} from this perfectly located property. 
-          You&apos;ll be in the heart of the city&apos;s most sought-after neighborhood, with easy access 
+          You&apos;ll be in the heart of the city&apos;s most sought-after neighbourhood, with easy access 
           to premier dining, shopping, and cultural attractions. The area is known for its 
           safety, walkability, and proximity to major landmarks.
         </p>
@@ -83,7 +83,7 @@ export function PropertyMap({ property }: PropertyMapProps) {
       
       {/* Nearby Attractions */}
       <div className="bg-gray-50 rounded-2xl p-6">
-        <h4 className="font-semibold text-gray-900 mb-4">What's nearby</h4>
+        <h4 className="font-semibold text-gray-900 mb-4">What&apos;s nearby</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { name: 'Beach', distance: '0.5 miles', time: '7 min walk' },

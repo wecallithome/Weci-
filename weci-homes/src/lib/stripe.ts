@@ -9,8 +9,8 @@ export const getStripe = () => {
   return stripePromise
 }
 
-export const formatAmountForStripe = (amount: number, currency: string): number => {
-  const numberFormat = new Intl.NumberFormat(['en-US'], {
+export const formatAmountForStripe = (amount: number, currency: string = 'gbp'): number => {
+  const numberFormat = new Intl.NumberFormat(['en-GB'], {
     style: 'currency',
     currency: currency,
     currencyDisplay: 'symbol',
@@ -25,8 +25,8 @@ export const formatAmountForStripe = (amount: number, currency: string): number 
   return zeroDecimalCurrency ? amount : Math.round(amount * 100)
 }
 
-export const formatAmountFromStripe = (amount: number, currency: string): number => {
-  const numberFormat = new Intl.NumberFormat(['en-US'], {
+export const formatAmountFromStripe = (amount: number, currency: string = 'gbp'): number => {
+  const numberFormat = new Intl.NumberFormat(['en-GB'], {
     style: 'currency',
     currency: currency,
     currencyDisplay: 'symbol',

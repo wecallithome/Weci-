@@ -15,7 +15,7 @@ interface PropertyFiltersProps {
 
 const propertyTypes: { value: PropertyType; label: string }[] = [
   { value: 'villa', label: 'Villa' },
-  { value: 'apartment', label: 'Apartment' },
+  { value: 'apartment', label: 'Flat' },
   { value: 'house', label: 'House' },
   { value: 'condo', label: 'Condo' },
   { value: 'townhouse', label: 'Townhouse' },
@@ -109,7 +109,7 @@ export function PropertyFilters({
                 value={priceRange.min}
                 onChange={(e) => handlePriceChange('min', Number(e.target.value))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-navy-500 focus:border-transparent"
-                placeholder="$0"
+                placeholder="£0"
               />
             </div>
             <div>
@@ -119,12 +119,12 @@ export function PropertyFilters({
                 value={priceRange.max}
                 onChange={(e) => handlePriceChange('max', Number(e.target.value))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-navy-500 focus:border-transparent"
-                placeholder="$2000+"
+                placeholder="£2000+"
               />
             </div>
           </div>
           <div className="text-sm text-gray-600">
-            ${priceRange.min} - ${priceRange.max}
+            £{priceRange.min} - £{priceRange.max}
           </div>
         </div>
       </div>

@@ -11,8 +11,6 @@ import {
   Bell,
   Star,
   Search,
-  Filter,
-  ChevronRight,
   Home,
   Clock,
   CheckCircle,
@@ -20,7 +18,8 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { formatCurrency, formatDateRange } from '@/lib/utils'
-import { Booking, Property } from '@/types'
+import { Booking } from '@/types'
+import Image from 'next/image'
 
 // Mock data for demonstration
 const mockBookings: Booking[] = [
@@ -31,55 +30,52 @@ const mockBookings: Booking[] = [
     start_date: new Date('2024-03-15'),
     end_date: new Date('2024-03-20'),
     guest_count: 4,
-    total_amount: 2850,
+    pricing: {
+      base_price: 650,
+      nights: 5,
+      subtotal: 3250,
+      cleaning_fee: 150,
+      service_fee: 200,
+      taxes: 250,
+      total: 3850
+    },
     status: 'confirmed',
-    created_at: new Date('2024-01-15'),
-    updated_at: new Date('2024-01-15'),
+    created_at: '2024-01-15T00:00:00Z',
+    updated_at: '2024-01-15T00:00:00Z',
     property: {
       id: '1',
       title: 'Luxury Beachfront Villa',
-      location: 'Malibu, California',
-      main_image: 'https://images.unsplash.com/photo-1502780402662-acc01917d7e6?w=500&q=80',
+      description: 'Stunning oceanfront villa',
+      location: {
+        address: '123 Ocean Drive',
+        city: 'Malibu',
+        state: 'California',
+        country: 'USA',
+        zip_code: '90265'
+      },
+      images: [{
+        id: '1',
+        url: 'https://images.unsplash.com/photo-1502780402662-acc01917d7e6?w=500&q=80',
+        alt: 'Luxury Beachfront Villa',
+        is_primary: true,
+        order: 1
+      }],
+      amenities: [],
       nightly_price: 650,
-    }
-  },
-  {
-    id: '2',
-    property_id: '2',
-    user_id: '1',
-    start_date: new Date('2024-04-10'),
-    end_date: new Date('2024-04-15'),
-    guest_count: 2,
-    total_amount: 1950,
-    status: 'pending',
-    created_at: new Date('2024-01-20'),
-    updated_at: new Date('2024-01-20'),
-    property: {
-      id: '2',
-      title: 'Mountain Retreat Chalet',
-      location: 'Aspen, Colorado',
-      main_image: 'https://images.unsplash.com/photo-1486318507993-c42e6e4cc6e5?w=500&q=80',
-      nightly_price: 390,
-    }
-  },
-  {
-    id: '3',
-    property_id: '3',
-    user_id: '1',
-    start_date: new Date('2024-02-05'),
-    end_date: new Date('2024-02-08'),
-    guest_count: 6,
-    total_amount: 1680,
-    status: 'completed',
-    created_at: new Date('2024-01-05'),
-    updated_at: new Date('2024-02-08'),
-    property: {
-      id: '3',
-      title: 'City Penthouse Loft',
-      location: 'New York City, NY',
-      main_image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&q=80',
-      nightly_price: 560,
-    }
+      cleaning_fee: 150,
+      service_fee: 200,
+      capacity: { guests: 8, bedrooms: 4, bathrooms: 3, beds: 4 },
+      property_type: 'villa',
+      host_id: '1',
+      host: { id: '1', email: 'host@example.com', name: 'John Host', created_at: '', updated_at: '' },
+      availability: [],
+      rating: 4.9,
+      review_count: 127,
+      featured: true,
+      created_at: '2024-01-01T00:00:00Z',
+      updated_at: '2024-01-01T00:00:00Z'
+    },
+    user: { id: '1', email: 'user@example.com', name: 'User', created_at: '', updated_at: '' }
   }
 ]
 
@@ -92,13 +88,12 @@ const mockUser = {
 
 export function DashboardClient() {
   const [activeTab, setActiveTab] = useState<'bookings' | 'profile' | 'settings'>('bookings')
-  const [bookings, setBookings] = useState<Booking[]>(mockBookings)
   const [filteredBookings, setFilteredBookings] = useState<Booking[]>(mockBookings)
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
-    let filtered = bookings
+    let filtered = mockBookings
     
     if (statusFilter !== 'all') {
       filtered = filtered.filter(booking => booking.status === statusFilter)
@@ -107,12 +102,12 @@ export function DashboardClient() {
     if (searchQuery) {
       filtered = filtered.filter(booking => 
         booking.property?.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        booking.property?.location.toLowerCase().includes(searchQuery.toLowerCase())
+        `${booking.property?.location.city}, ${booking.property?.location.state}`.toLowerCase().includes(searchQuery.toLowerCase())
       )
     }
     
     setFilteredBookings(filtered)
-  }, [bookings, statusFilter, searchQuery])
+  }, [statusFilter, searchQuery])
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -160,10 +155,12 @@ export function DashboardClient() {
                 Notifications
               </Button>
               <div className="flex items-center space-x-2">
-                <img
+                <Image
                   src={mockUser.avatar}
                   alt={mockUser.firstName}
-                  className="h-8 w-8 rounded-full object-cover"
+                  width={32}
+                  height={32}
+                  className="rounded-full object-cover"
                 />
                 <span className="text-sm font-medium text-gray-700">
                   {mockUser.firstName}
@@ -279,9 +276,11 @@ export function DashboardClient() {
                         <div className="flex gap-6">
                           {/* Property Image */}
                           <div className="w-24 h-24 flex-shrink-0">
-                            <img
-                              src={booking.property?.main_image}
-                              alt={booking.property?.title}
+                            <Image
+                              src={booking.property?.images[0]?.url || ''}
+                              alt={booking.property?.title || ''}
+                              width={96}
+                              height={96}
                               className="w-full h-full object-cover rounded-lg"
                             />
                           </div>
@@ -295,7 +294,7 @@ export function DashboardClient() {
                                 </h3>
                                 <div className="flex items-center text-gray-600 text-sm mb-2">
                                   <MapPin className="h-4 w-4 mr-1" />
-                                  {booking.property?.location}
+                                  {booking.property?.location.city}, {booking.property?.location.state}
                                 </div>
                                 <div className="flex items-center text-gray-600 text-sm">
                                   <Calendar className="h-4 w-4 mr-1" />
@@ -308,7 +307,7 @@ export function DashboardClient() {
                                   <span className="ml-1 capitalize">{booking.status}</span>
                                 </div>
                                 <div className="mt-2 text-lg font-bold text-gray-900">
-                                  {formatCurrency(booking.total_amount)}
+                                  {formatCurrency(booking.pricing.total)}
                                 </div>
                               </div>
                             </div>
@@ -371,10 +370,12 @@ export function DashboardClient() {
 
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center space-x-6 mb-8">
-                    <img
+                    <Image
                       src={mockUser.avatar}
                       alt={mockUser.firstName}
-                      className="h-20 w-20 rounded-full object-cover"
+                      width={80}
+                      height={80}
+                      className="rounded-full object-cover"
                     />
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900">

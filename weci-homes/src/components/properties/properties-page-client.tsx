@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { PropertyFilters } from '@/components/properties/property-filters'
 import { PropertyGrid } from '@/components/properties/property-grid'
@@ -8,7 +8,7 @@ import { PropertyMap } from '@/components/properties/property-map'
 import { SearchHeader } from '@/components/properties/search-header'
 import { Button } from '@/components/ui/button'
 import { Map, Grid3X3, SlidersHorizontal } from 'lucide-react'
-import { PropertyFilters as FilterType, Property } from '@/types'
+import { PropertyFilters as FilterType } from '@/types'
 import { spacing } from '@/lib/utils'
 import { usePropertiesData } from '@/hooks/use-properties'
 

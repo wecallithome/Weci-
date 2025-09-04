@@ -175,7 +175,7 @@ export function PropertyCard({
                     key={index}
                     className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full"
                   >
-                    {amenity}
+                    {amenity.name}
                   </span>
                 ))}
                 {property.amenities.length > 3 && (

@@ -2,9 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { Wifi, Car, Waves, ChefHat, Wind, Flame, Tv, Shield, Heart, Music } from 'lucide-react'
+import { Amenity } from '@/types'
 
 interface PropertyAmenitiesProps {
-  amenities: string[]
+  amenities: Amenity[]
 }
 
 // Icon mapping for amenities
@@ -45,18 +46,18 @@ export function PropertyAmenities({ amenities }: PropertyAmenitiesProps) {
       {/* Amenities Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {visibleAmenities.map((amenity, index) => {
-          const Icon = amenityIcons[amenity] || amenityIcons['Default']
+          const Icon = amenityIcons[amenity.name] || amenityIcons['Default']
           
           return (
             <motion.div
-              key={amenity}
+              key={amenity.id}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className="flex items-center space-x-3 p-3 hover:bg-gray-50 rounded-lg transition-colors"
             >
               <Icon className="h-5 w-5 text-gray-600" />
-              <span className="text-gray-700 font-medium">{amenity}</span>
+              <span className="text-gray-700 font-medium">{amenity.name}</span>
             </motion.div>
           )
         })}

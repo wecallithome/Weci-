@@ -53,7 +53,7 @@ const team = [
     name: 'Marcus Rodriguez',
     role: 'Head of Properties',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=80',
-    bio: 'Real estate veteran specializing in premium vacation rentals.'
+    bio: 'Real estate veteran specialising in premium holiday lets.'
   },
   {
     name: 'Elena Volkov',
@@ -71,7 +71,7 @@ const team = [
 
 const testimonials = [
   {
-    quote: "We Call It Homes transformed our family vacation into something extraordinary. Every detail was perfect.",
+    quote: "We Call It Homes transformed our family holiday into something extraordinary. Every detail was perfect.",
     author: "Jennifer Walsh",
     role: "Family Traveler",
     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80"
@@ -191,7 +191,7 @@ export function AboutClient() {
                 <p>
                   Today, we&apos;re proud to offer a carefully curated collection of properties 
                   that represent the pinnacle of luxury travel. Each home in our portfolio 
-                  tells a story, creates memories, and elevates the very concept of "staying somewhere" 
+                  tells a story, creates memories, and elevates the very concept of &ldquo;staying somewhere&rdquo; 
                   into &ldquo;belonging somewhere.&rdquo;
                 </p>
               </div>

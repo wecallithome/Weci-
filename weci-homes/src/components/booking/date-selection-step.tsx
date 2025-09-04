@@ -46,7 +46,7 @@ export function DateSelectionStep({ property, onNext }: DateSelectionStepProps) 
           When would you like to stay?
         </h2>
         <p className="text-gray-600 mb-8">
-          Select your check-in and check-out dates
+          Select your arrival and departure dates
         </p>
         
         {/* Calendar */}

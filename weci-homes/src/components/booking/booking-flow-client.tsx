@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Check } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { BookingStepIndicator } from '@/components/booking/booking-step-indicator'
 import { DateSelectionStep } from '@/components/booking/date-selection-step'

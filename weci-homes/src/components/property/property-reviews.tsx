@@ -26,7 +26,7 @@ const mockReviews = [
     avatar: 'MC',
     rating: 5,
     date: '2024-01-08',
-    content: 'Perfect location and amazing amenities. The kitchen was fully equipped and the pool area was incredible. Great for a family vacation.'
+    content: 'Perfect location and amazing amenities. The kitchen was fully equipped and the pool area was incredible. Great for a family holiday.'
   },
   {
     id: '3',
@@ -34,7 +34,7 @@ const mockReviews = [
     avatar: 'ER',
     rating: 4,
     date: '2024-01-01',
-    content: 'Beautiful property with great attention to detail. Minor issue with check-in but the host resolved it quickly. Overall fantastic experience.'
+    content: 'Beautiful property with great attention to detail. Minor issue with arrival but the host resolved it quickly. Overall fantastic experience.'
   }
 ]
 

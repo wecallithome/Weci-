@@ -1,6 +1,30 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
+// UK Configuration Constants
+export const UK_CONFIG = {
+  currency: {
+    code: 'GBP',
+    symbol: '£',
+    locale: 'en-GB',
+    decimalPlaces: 2
+  },
+  address: {
+    format: 'UK',
+    postcodePattern: /^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$/,
+    requiredFields: ['address', 'city', 'postcode']
+  },
+  dateTime: {
+    locale: 'en-GB',
+    dateFormat: 'DD/MM/YYYY',
+    timeFormat: '24h'
+  },
+  language: {
+    locale: 'en-GB',
+    dictionary: 'british-english'
+  }
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -62,23 +86,23 @@ export const spacing = {
   containerSmall: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
 }
 
-// Format currency
-export function formatCurrency(amount: number, currency: string = 'USD'): string {
-  return new Intl.NumberFormat('en-US', {
+// Format currency - UK localization
+export function formatCurrency(amount: number, currency: string = 'GBP'): string {
+  return new Intl.NumberFormat('en-GB', {
     style: 'currency',
     currency: currency,
   }).format(amount)
 }
 
-// Format date range
+// Format date range - UK localization
 export function formatDateRange(startDate: Date, endDate: Date): string {
   const options: Intl.DateTimeFormatOptions = { 
     month: 'short', 
     day: 'numeric' 
   }
   
-  const start = startDate.toLocaleDateString('en-US', options)
-  const end = endDate.toLocaleDateString('en-US', options)
+  const start = startDate.toLocaleDateString('en-GB', options)
+  const end = endDate.toLocaleDateString('en-GB', options)
   
   return `${start} - ${end}`
 }
@@ -125,4 +149,51 @@ export function clamp(num: number, min: number, max: number): number {
 export function truncateText(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text
   return text.slice(0, maxLength) + '...'
+}
+
+// UK Address validation and formatting
+export function validateUKPostcode(postcode: string): boolean {
+  const cleanPostcode = postcode.replace(/\s/g, '').toUpperCase()
+  const formattedPostcode = cleanPostcode.replace(/^(.*)([0-9][ABD-HJLNP-UW-Z]{2})$/, '$1 $2')
+  return UK_CONFIG.address.postcodePattern.test(formattedPostcode)
+}
+
+export function formatUKPostcode(postcode: string): string {
+  const cleanPostcode = postcode.replace(/\s/g, '').toUpperCase()
+  return cleanPostcode.replace(/^(.*)([0-9][ABD-HJLNP-UW-Z]{2})$/, '$1 $2')
+}
+
+export function formatUKAddress(location: {
+  address: string
+  city: string
+  county?: string
+  postcode: string
+  country?: string
+}): string {
+  const parts = [
+    location.address,
+    location.city,
+    location.county,
+    formatUKPostcode(location.postcode),
+    location.country || 'United Kingdom'
+  ].filter(Boolean)
+  
+  return parts.join(', ')
+}
+
+// British English term conversions
+export const BRITISH_TERMS = {
+  'apartment': 'flat',
+  'elevator': 'lift',
+  'parking lot': 'car park',
+  'trash': 'rubbish',
+  'vacation rental': 'holiday let',
+  'check-in': 'arrival',
+  'check-out': 'departure',
+  'zip code': 'postcode',
+  'state': 'county'
+}
+
+export function convertToBritishTerm(term: string): string {
+  return BRITISH_TERMS[term.toLowerCase() as keyof typeof BRITISH_TERMS] || term
 }
