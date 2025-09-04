@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { PropertyCard } from '@/components/properties/property-card'
 import { Property } from '@/types'
-import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { AlertCircle } from 'lucide-react'
 
 interface PropertyGridProps {

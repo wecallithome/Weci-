@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button'
 interface PropertyReviewsProps {
   rating: number
   reviewCount: number
-  propertyId: string
 }
 
 // Mock review data
@@ -38,7 +37,7 @@ const mockReviews = [
   }
 ]
 
-export function PropertyReviews({ rating, reviewCount, propertyId }: PropertyReviewsProps) {
+export function PropertyReviews({ rating, reviewCount }: PropertyReviewsProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

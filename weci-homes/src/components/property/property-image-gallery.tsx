@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ImageAsset } from '@/types'
@@ -188,11 +189,14 @@ export function PropertyImageGallery({ images, title }: PropertyImageGalleryProp
               className="relative max-w-7xl max-h-[90vh] mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={images[selectedImageIndex]?.url}
-                alt={images[selectedImageIndex]?.alt || title}
-                className="max-w-full max-h-full object-contain rounded-lg"
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={images[selectedImageIndex]?.url || ''}
+                  alt={images[selectedImageIndex]?.alt || title}
+                  fill
+                  className="object-contain rounded-lg"
+                />
+              </div>
             </motion.div>
             
             {/* Navigation */}

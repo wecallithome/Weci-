@@ -30,7 +30,7 @@ export function PropertiesPageClient() {
     if (filters.location) {
       filtered = filtered.filter(property => 
         property.location.city.toLowerCase().includes(filters.location!.toLowerCase()) ||
-        property.location.state.toLowerCase().includes(filters.location!.toLowerCase()) ||
+        property.location.state?.toLowerCase().includes(filters.location!.toLowerCase()) ||
         property.location.country.toLowerCase().includes(filters.location!.toLowerCase())
       )
     }

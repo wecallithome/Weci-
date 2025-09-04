@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { 
   Mail, 
   Phone, 
@@ -111,10 +112,12 @@ export function ContactClient() {
       {/* Hero Section */}
       <section className="relative h-96 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80"
             alt="Contact us"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-900/80 to-navy-700/60" />
         </div>
@@ -359,11 +362,14 @@ export function ContactClient() {
                     className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
                   >
                     <div className="flex items-start space-x-4">
-                      <img
-                        src={office.image}
-                        alt={office.city}
-                        className="w-16 h-16 rounded-lg object-cover"
-                      />
+                      <div className="relative w-16 h-16 flex-shrink-0">
+                        <Image
+                          src={office.image}
+                          alt={office.city}
+                          fill
+                          className="rounded-lg object-cover"
+                        />
+                      </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-semibold text-navy-900 mb-2">
                           {office.city}

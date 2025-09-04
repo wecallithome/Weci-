@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Share, Heart, MapPin, Users, Bed, Bath, Wifi, Car, Waves, Star } from 'lucide-react'
+import { ArrowLeft, Share, Heart, MapPin, Users, Bed, Bath, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PropertyImageGallery } from '@/components/property/property-image-gallery'
 import { BookingWidget } from '@/components/property/booking-widget'
@@ -14,7 +14,6 @@ import { usePropertyData } from '@/hooks/use-properties'
 import { useRouter } from 'next/navigation'
 import { spacing, typography } from '@/lib/utils'
 import { toast } from '@/components/ui/toast'
-import Link from 'next/link'
 
 interface PropertyDetailClientProps {
   propertyId: string
@@ -33,7 +32,7 @@ export function PropertyDetailClient({ propertyId }: PropertyDetailClientProps) 
           text: property?.description,
           url: window.location.href,
         })
-      } catch (error) {
+      } catch {
         // User cancelled or error occurred
       }
     } else {
@@ -201,7 +200,6 @@ export function PropertyDetailClient({ propertyId }: PropertyDetailClientProps) 
             <PropertyReviews 
               rating={property.rating}
               reviewCount={property.review_count}
-              propertyId={property.id}
             />
           </div>
           

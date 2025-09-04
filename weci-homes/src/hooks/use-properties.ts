@@ -345,11 +345,11 @@ const mockProperties: Property[] = [
   }
 ]
 
-async function fetchProperties(filters: PropertyFilters): Promise<Property[]> {
+async function fetchProperties(_filters: PropertyFilters): Promise<Property[]> {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 1000))
   
-  // In a real app, this would be a Supabase query
+  // In a real app, this would be a Supabase query with filters
   return mockProperties
 }
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { 
   Award, 
   Star, 
@@ -96,10 +97,12 @@ export function AboutClient() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80"
             alt="Luxury interior"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-900/80 to-navy-700/60" />
         </div>
@@ -204,12 +207,15 @@ export function AboutClient() {
               viewport={{ once: true }}
               className="relative"
             >
-              <img
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80"
-                alt="Luxury living space"
-                className="rounded-2xl shadow-2xl"
-              />
-              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gold-400 rounded-2xl -z-10" />
+              <div className="relative h-96">
+                <Image
+                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80"
+                  alt="Luxury living space"
+                  fill
+                  className="object-cover rounded-2xl shadow-2xl"
+                />
+                <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gold-400 rounded-2xl -z-10" />
+              </div>
             </motion.div>
           </div>
         </div>
@@ -287,11 +293,14 @@ export function AboutClient() {
                 viewport={{ once: true }}
                 className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow"
               >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-24 h-24 rounded-full object-cover mx-auto mb-4"
-                />
+                <div className="relative w-24 h-24 mx-auto mb-4">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="rounded-full object-cover"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold text-navy-900 text-center mb-2">
                   {member.name}
                 </h3>
@@ -340,11 +349,14 @@ export function AboutClient() {
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <div className="flex items-center space-x-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
+                  <div className="relative w-12 h-12 flex-shrink-0">
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.author}
+                      fill
+                      className="rounded-full object-cover"
+                    />
+                  </div>
                   <div>
                     <h4 className="text-white font-semibold">
                       {testimonial.author}

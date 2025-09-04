@@ -55,7 +55,7 @@ const initialUIState: UIState = {
 export const useAppStore = create<AppStore>()(
   devtools(
     persist(
-      (set, get) => ({
+      (set) => ({
         // Initial state
         user: null,
         bookingFlow: initialBookingFlow,

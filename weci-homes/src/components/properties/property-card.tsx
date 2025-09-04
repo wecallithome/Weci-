@@ -17,10 +17,9 @@ interface PropertyCardProps {
 
 export function PropertyCard({ 
   property, 
-  variant = 'default',
   showFavorite = true,
   onFavoriteToggle 
-}: PropertyCardProps) {
+}: Omit<PropertyCardProps, 'variant'>) {
   const [isFavorited, setIsFavorited] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   

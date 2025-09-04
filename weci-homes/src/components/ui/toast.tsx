@@ -4,12 +4,6 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle, AlertCircle, X, Info } from 'lucide-react'
 
-interface ToastProps {
-  message?: string
-  type?: 'success' | 'error' | 'warning' | 'info'
-  duration?: number
-}
-
 interface ToastState {
   show: boolean
   message: string

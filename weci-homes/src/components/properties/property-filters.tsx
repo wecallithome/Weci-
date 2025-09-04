@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { X, DollarSign, Users, Bed, Bath, MapPin, Wifi, Car, Waves } from 'lucide-react'
+import { X, DollarSign, Users, Bed, MapPin, Wifi, Car, Waves } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PropertyFilters as FilterType, PropertyType } from '@/types'
 
@@ -182,10 +182,8 @@ export function PropertyFilters({
             <button
               key={option}
               onClick={() => {
-                const bedrooms = index === 0 ? undefined : index
-                onFiltersChange({ 
-                  // Add bedrooms to filters if implemented in types
-                })
+                // Bedroom filtering not implemented yet
+                // TODO: Implement bedroom filtering
               }}
               className="p-2 text-sm border border-gray-300 rounded-lg hover:border-gray-400 text-gray-700 transition-colors"
             >
